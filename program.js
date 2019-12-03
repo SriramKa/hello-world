@@ -4,4 +4,6 @@ function main()
     console.log(hello)
 }
 
+//test comment
+
 main()

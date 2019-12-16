@@ -119,7 +119,6 @@ var handlers = {
 	//sets up event listeners for all buttons for every todo item (delete, toggle, change)
 	setUpEventListeners: function() {
 		document.querySelector("ul").addEventListener("click", function(event) {
-			console.log(event);
 			//for deleting
 			if (event.target.className === "deleteButton") {
 			handlers.deleteTodo(parseInt(event.target.parentNode.id));

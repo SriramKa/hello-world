@@ -41,7 +41,7 @@ var todoList = {
 	}
 };
 
-  var handlers = {
+var handlers = {
 	//functions for handling button-click events relating to
 	//modification of the todolist
 
@@ -98,7 +98,6 @@ var todoList = {
 			todoLi.textContent = todoTextWithCompletion;
 			todoLi.appendChild(this.createDeleteButton());
 			todoLi.appendChild(this.createToggleButton());
-			todoLi.appendChild(this.createChangeButton());
 			todosUl.appendChild(todoLi);
 		}
 	},
@@ -117,16 +116,10 @@ var todoList = {
 		return toggleButton;
 	},
 
-	createChangeButton: function() {
-	  var changeButton = document.createElement("button");
-	  changeButton.textContent = "Change";
-	  changeButton.className = "changeButton";
-	  return changeButton;
-	},
-
 	//sets up event listeners for all buttons for every todo item (delete, toggle, change)
 	setUpEventListeners: function() {
 		document.querySelector("ul").addEventListener("click", function(event) {
+			console.log(event);
 			//for deleting
 			if (event.target.className === "deleteButton") {
 			handlers.deleteTodo(parseInt(event.target.parentNode.id));
@@ -138,8 +131,8 @@ var todoList = {
 			}
 
 			//for changing
-			if (event.target.className === "changeButton") {
-				var todoToChange = event.target.parentElement;
+			if (event.target.localName === "li") {
+				var todoToChange = event.target;
 				todoToChange.innerHTML = ""; //empties the li, but its id is maintained
 
 				//for new input box

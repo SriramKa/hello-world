@@ -38,6 +38,10 @@ var todoList = {
 				item.completed = false;
 			}
 		}
+	},
+
+	deleteAll: function () {
+		this.todos.splice(0, this.todos.length);
 	}
 };
 
@@ -73,14 +77,41 @@ var handlers = {
 	toggleAll: function() {
 		todoList.toggleAll();
 		view.displayTodos();
+	},
+
+	deleteAll: function () {
+		todoList.deleteAll();
+		view.displayTodos();
 	}
   };
 
   var view = {
-	//modifies dom to reflect changes after every modification of
-	//the todolist
+	//modifies dom to reflect changes after every modification of the todolist
 
 	displayTodos: function() {
+		//for creating toggle all button and delete all button
+		//first the toggle all button
+		var toggleAllButton = document.createElement('button');
+		toggleAllButton.textContent = 'Toggle All';
+		toggleAllButton.addEventListener('click', function (event) {
+			handlers.toggleAll();
+		});
+
+		//now, the delete all button
+		var deleteAllButton = document.createElement('button');
+		deleteAllButton.textContent = 'Delete All';
+		deleteAllButton.addEventListener('click', function (event) {
+			handlers.deleteAll();
+		})
+
+		//now, adding both buttons to the div
+		document.getElementById('buttons').innerHTML = "";
+		if(todoList.todos.length > 0) {
+			document.getElementById('buttons').appendChild(toggleAllButton);
+			document.getElementById('buttons').appendChild(deleteAllButton);
+		}
+
+		//for creating the list of todos
 		var todosUl = document.querySelector("ul");
 		todosUl.innerHTML = "";  //ensures that the list is cleared before being reformed; otherwise the list will become cumulative;
 		for (var i = 0; i < todoList.todos.length; i++) {
@@ -90,7 +121,8 @@ var handlers = {
 
 			if (todo.completed === true) {
 			todoTextWithCompletion = "(x) " + todo.todoText;
-			} else {
+			}
+			else {
 			todoTextWithCompletion = "( ) " + todo.todoText;
 			}
 

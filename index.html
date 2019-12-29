@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Practical Todos</title>
-    <link
-      id = "favicon"
-      rel = "icon"
-      href = "https://hyperdev.com/favicon.ico"
-      type = "image/x-icon"
-    />
-  </head>
-  <body>
-    <h1>Todo List</h1>
-	<h4>To edit any item, click on it</h4>
-    <div>
-      <button onclick = "handlers.toggleAll()">Toggle All</button>
-    </div>
+	<head>
+		<title>Practical Todos</title>
+		<link
+		id = "favicon"
+		rel = "icon"
+		href = "https://hyperdev.com/favicon.ico"
+		type = "image/x-icon"
+		/>
+	</head>
+	<body>
+		<h1>Todo List</h1>
+		<h4>To edit any item, click on it</h4>
 
-    <div>
-      <button onclick = "handlers.addTodo()" placeholder = "Enter todo list item">Add</button>
-      <input id = "addTodoTextInput" type = "text" />
-    </div>
+		<div>
+			<input id = "addTodoTextInput" type = "text" placeholder = "Enter todo list item"/>
+			<button onclick = "handlers.addTodo()">Add</button>
+		</div>
 
-    <ul></ul> <!--to insert the todo list-->
-    <script src = "script.js"></script>
-  </body>
+		<div id = "buttons"></div> <!-- to insert toggle all and delete all buttons -->
+
+		<ul></ul> <!-- to insert the todo list -->
+		<script src = "script.js"></script>
+	</body>
 </html>
